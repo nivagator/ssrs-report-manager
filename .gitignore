@@ -1,0 +1,10 @@
+.vscode
+.vscode/
+
+sftp.json
+
+bfg.jar
+
+.git-rewrite
+
+db.sqlite3
