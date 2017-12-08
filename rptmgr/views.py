@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
+from django.conf import settings
 
 from .models import Report
 
@@ -16,7 +17,8 @@ def index(request):
 def report(request, report_id):
     report = get_object_or_404(Report, pk=report_id)
     context = {
-        'report': report
+        'report': report,
+        'root_report_url': settings.SSRS_SERVER_BASE_URL
     }
     return render(request, 'rptmgr/report.html', context)
     # return HttpResponse("You're looking at report ID #%s." % report_id)

@@ -1,10 +1,12 @@
  <h2>{{ report.report_name }}</h2>      <a href="{% url 'rptmgr:index' %}">back</a>
  <ul>
     <li>Output file prefix: {{ report.report_file_name }}</li>
-    <li>Report base url: {{ report.base_url }}</li>
     {% if report.active %}
+        <li>Report url: <a href="{{ root_report_url }}{{ report.base_url }}">{{ root_report_url }}{{ report.base_url }}</a></li>
         <li>This report is active</li>
     {% else %}
+        <li>Report base url: {{ report.base_url }}</li>
         <li>This report is inactive</li>
     {% endif %}
  </ul>
+ 
