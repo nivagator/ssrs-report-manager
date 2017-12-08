@@ -2,7 +2,7 @@
     <ul>
         {% for report in latest_report_list %}
 
-        <li><a href="{% url 'report' report.id %}">{{ report.report_name }}</a></li>
+        <li><a href="{% url 'rptmgr:report' report.id %}">{{ report.report_name }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
