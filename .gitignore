@@ -1,6 +1,17 @@
 .vscode
 .vscode/
 
+*.pyc
+*.pyo
+.installed.cfg
+bin
+develop-eggs
+dist
+downloads
+eggs
+parts
+src/*.egg-info
+
 sftp.json
 
 bfg.jar
@@ -8,3 +19,4 @@ bfg.jar
 .git-rewrite
 
 db.sqlite3
+
