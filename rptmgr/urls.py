@@ -1,10 +1,15 @@
 from django.urls import path
 
-from .views import index, report, editreport
+from .views import (
+    ReportListView,
+    ReportDetailView, 
+    ReportUpdateView,
+    editreport
+)
 
 app_name = 'rptmgr'
 urlpatterns = [
-    path('', index, name='index'),
-    path('<int:report_id>/', report, name='report'),
-    path('<int:report_id>/edit', editreport, name='editreport'),
+    path('', ReportListView.as_view(), name='index'),
+    path('<int:pk>/', ReportDetailView.as_view(), name='report'),
+    path('<int:pk>/edit', ReportUpdateView.as_view(), name='editreport'),
 ]
