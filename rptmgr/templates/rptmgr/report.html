@@ -1,4 +1,5 @@
- <h2>{{ report.report_name }}</h2>      <a href="{% url 'rptmgr:index' %}">back</a>
+ <h2>{{ report.report_name }}</h2>      
+ <a href="{% url 'rptmgr:index' %}">back</a>  |  <a href="{% url 'rptmgr:editreport' report.id %}">edit</a>
  <ul>
     <li>Output file prefix: {{ report.report_file_name }}</li>
     {% if report.active %}
@@ -9,4 +10,5 @@
         <li>This report is inactive</li>
     {% endif %}
  </ul>
+ 
  
