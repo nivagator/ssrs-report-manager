@@ -1,4 +1,6 @@
+
 {% if latest_report_list %}
+<h2>Report Inventory</h2>
     <ul>
         {% for report in latest_report_list %}
 
@@ -7,4 +9,6 @@
     </ul>
 {% else %}
     <p>No reports are available.</p>
+    
 {% endif %}
+<a href="{% url 'rptmgr:newreport' %}">Create New</a>

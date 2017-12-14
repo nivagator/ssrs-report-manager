@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpRequest
 from django.urls import reverse
 from django.conf import settings
@@ -37,6 +37,63 @@ class ReportUpdateView(UpdateView):
     queryset = Report.objects.all()
     form_class = ReportModelForm
     template_name = 'rptmgr/editreport.html'
+
+
+# class ReportUpdateView(View):
+#     # https://docs.djangoproject.com/en/2.0/topics/class-based-views/intro/#handling-forms-with-class-based-views
+#     def get(self, request, *args, **kwargs):
+#         form = ReportModelForm()
+#         queryset = Report.objects.all()
+#         context = {
+#             "form": form,
+#             "queryset": queryset,
+#             # "pk":pk
+#         }
+#         template_name = 'rptmgr/editreport.html'
+#         return render(request, template_name, context)
+
+#     def post(self, request, *args, **kwargs):
+#         pass
+
+
+class ReportCreateView(View):
+    def get(self, request, *args, **kwargs):
+        form = ReportModelForm()
+        context = {
+            "form": form,
+            "title": "Create New Report", 
+            "value_text": "Create",
+        }
+        return render(request, "rptmgr/editreport.html", context)
+
+    def post(self, request, *args, **kwargs):
+        form = ReportModelForm(request.POST)
+        context = {
+            "form": form,
+            "title": "New Report Created", 
+            "value_text": "Create",
+        }
+        template = "rptmgr/editreport.html"
+        if form.is_valid():
+            cl_report_name = form.cleaned_data.get("report_name")
+            cl_report_file_name = form.cleaned_data.get("report_file_name")
+            cl_base_url = form.cleaned_data.get("base_url")
+            cl_active = form.cleaned_data.get("active")
+            obj, created = Report.objects.get_or_create(report_name=cl_report_name,report_file_name=cl_report_file_name,base_url=cl_base_url,active=cl_active)
+            if created:
+                # print(obj.id)
+                context = {
+                    "object": obj,
+                    "created": created,
+                }   
+                
+                # template = "rptmgr/index.html"
+                return redirect("rptmgr:report", pk=obj.id)
+            else:
+                print("not created")
+                return render(request, template, context)
+
+
 
 
 # Create your views here.

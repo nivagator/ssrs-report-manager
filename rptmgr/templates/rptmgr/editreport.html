@@ -1,9 +1,10 @@
-<h2>{{ report.report_name }}</h2>
+<h2>{% if report.report_name %}{{ report.report_name }}{% else %}{{ title }}{% endif %}</h2>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 {% load crispy_forms_tags %}
-<form action="{% url 'rptmgr:report' report.id %}" method="post">
+
+<form action="." method="post">
     {% csrf_token %}
     {{ form|crispy}}
-    <input class='btn btn-primary' type='submit' value='Update' />
+    <input class='btn btn-primary' type='submit' value='{% if value_text %}{{ value_text}}{% else %}Update{% endif %}' />
 </form>
