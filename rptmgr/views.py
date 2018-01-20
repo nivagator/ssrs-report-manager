@@ -43,12 +43,14 @@ class ReportUpdateView(UpdateView):
 #     # https://docs.djangoproject.com/en/2.0/topics/class-based-views/intro/#handling-forms-with-class-based-views
 #     def get(self, request, *args, **kwargs):
 #         form = ReportModelForm()
-#         queryset = Report.objects.all()
+#         queryset = Report.objects.get(id=kwargs['pk'])
 #         context = {
 #             "form": form,
-#             "queryset": queryset,
-#             # "pk":pk
+#             "report": queryset,
+#             "pk": kwargs['pk']
 #         }
+#         # print(context)
+#         print(queryset.report_file_name)
 #         template_name = 'rptmgr/editreport.html'
 #         return render(request, template_name, context)
 
