@@ -32,6 +32,26 @@ class ReportDetailView(DetailView):
     # https://docs.djangoproject.com/en/2.0/topics/class-based-views/intro/#handling-forms-with-class-based-views
 
 
+# def report_update_view(request, id=None):
+#     obj = get_object_or_404(Report, id=id)
+#     form = ReportModelForm(request.POST or None, instance=obj)
+#     context = {
+#         "form": form,
+#         }
+#     if form.is_valid():
+#         print(form.cleaned_data)
+#         obj = form.save(commit=False)
+#         # print(obj.title)
+#         obj.save() # this writes to db
+#         messages.success(request, "Updated post!")
+#         # return HttpResponseRedirect("/report/")
+#         return render(request, template, context)
+#     else:
+#         print("invalid data")
+
+#     template = "rptmgr/editreport.html"
+#     return render(request, template, context)
+
 class ReportUpdateView(UpdateView):
     # model = Report
     queryset = Report.objects.all()
@@ -69,7 +89,7 @@ class ReportCreateView(View):
         return render(request, "rptmgr/editreport.html", context)
 
     def post(self, request, *args, **kwargs):
-        form = ReportModelForm(request.POST)
+        form = ReportModelForm(request.POST or None)
         context = {
             "form": form,
             "title": "New Report Created", 

@@ -1,10 +1,11 @@
 <h2>{% if report.report_name %}{{ report.report_name }}{% else %}{{ title }}{% endif %}</h2>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-{% load crispy_forms_tags %}
+<!-- {% load crispy_forms_tags %} -->
 
-<form action="." method="post">
+<form action="." method="POST">
     {% csrf_token %}
-    {{ form|crispy}}
+    <!-- {{ form|crispy}} -->
+    {{ form.as_p}}
     <input class='btn btn-primary' type='submit' value='{% if value_text %}{{ value_text}}{% else %}Update{% endif %}' />
 </form>

@@ -5,7 +5,8 @@ from .views import (
     ReportDetailView, 
     ReportUpdateView,
     ReportCreateView,
-    editreport
+    editreport,
+    report_update_view
 )
 
 app_name = 'rptmgr'
@@ -13,5 +14,5 @@ urlpatterns = [
     path('', ReportListView.as_view(), name='index'),
     path('<int:pk>/', ReportDetailView.as_view(), name='report'),
     path('new/', ReportCreateView.as_view(), name='newreport'),
-    path('<int:pk>/edit', ReportUpdateView.as_view(), name='editreport'),
+    path('<id>/edit', report_update_view, name='editreport'),
 ]
